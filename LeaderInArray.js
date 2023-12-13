@@ -23,5 +23,5 @@ function Leader(array){
     console.log("The Leaders are: ", leaders.reverse());
 };
 
-let array = [15,16,9,8,3,2,6,1,4];
+let array = [16, 17, 4, 3, 5, 2];
 Leader(array);
