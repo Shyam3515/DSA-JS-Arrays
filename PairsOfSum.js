@@ -13,26 +13,23 @@ function PairsOfSum(array,sum){
    let map = new Map();//O(n)
    let count = 0;
    //Adding elements to map
-   for (let i = 0; i < array.length; i++) {
-        if(map.has(array[i])){
-            map.set(array[i],map.get(array[i])+1);
-        }   
-        else{
-            map.set(array[i],1);
-        }
-   };
-   console.log(map);
+   array.forEach((element) => {
+    if(map.has(element)){
+        map.set(element,map.get(element)+1);
+    }else{
+        map.set(element,1);
+    }
+});
 
-   //Finding out pairs
-   for (let i = 0; i < array.length; i++) {
-        if(map.has(sum-array[i]) && (sum-array[i]!=sum/2 || map.get(array[i])>1)){
-            const ele = sum-(array[i]);
-        
-            console.log('('+array[i],ele+')');
-            map.set(array[i],map.get(array[i])-1);
-            count++;
-        };
-   };
+//Finding pairs
+array.forEach((element) => {
+    const ele = sum - element;
+    if(map.has(ele) && ((ele != sum/2) || map.get(element)>1)){
+        console.log('('+element,ele+')');
+        map.set(element,map.get(element)-1);
+        count++;
+    }
+});
    console.log('Number of pairs without duplicate:',count/2);
    console.log(map);
 };
