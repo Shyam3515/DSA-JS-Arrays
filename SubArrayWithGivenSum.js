@@ -30,27 +30,29 @@ function Method1(){
         console.log('Sub array with given sum is not found...');
     }
 };
-Method1();
+// Method1();
 
 //Method 2 : see some more questions in top method 2...
 function Method2(){
     let map = new Map();//O(n)
     let sum = 12, curSum = 0, start = 0, end = -1;
-    let arr = [2,4,6,-7,-6,5,3,4,-9,1,-2,3,5,4,1,11];
+    let arr = [2,4,6,-7,-6,5,3,4,-9,1,-2,3];
     for (let index = 0; index < arr.length; index++) {
         curSum += arr[index];
-        if(curSum - sum == 0){
+        if(curSum - sum == 0){//edge case for starting elements
             start = 0;
             end = index;
             console.log(`Sub Array is between indexes ${start} and ${end}`);
         }
 
+        // curSum - (curSum - sum) = sum
         if(map.has(curSum - sum)){
             start = map.get(curSum - sum) + 1;
             end = index;
-            console.log(`Sub Array is between indexes ${start} and ${end}`);
+            console.log(`Sub Array is between indexes ${start} and ${end},curSum - sum = ${curSum - sum}`);
         };
         map.set(curSum,index);  
+        // console.log(map)
     };
     if(end == -1){
         console.log('Sub Array is not found...');
